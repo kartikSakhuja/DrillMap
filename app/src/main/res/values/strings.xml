@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DrillMap</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="shortest_distance">Shortest Distance</string>
+</resources>
