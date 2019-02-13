@@ -83,7 +83,7 @@ public class MainActivity extends MapsActivity implements GoogleMap.OnMarkerDrag
 
         Toast.makeText(this, "Drag the markers!", Toast.LENGTH_LONG).show();
         showDistance();
-        createCircle();
+//        createCircle();
     }
 
     private void showDistance() {
@@ -203,122 +203,122 @@ public class MainActivity extends MapsActivity implements GoogleMap.OnMarkerDrag
         t1.speak(String.valueOf(shortest)+"metres",TextToSpeech.QUEUE_FLUSH, null);
     }
 
-    public void createCircle() {
-
-        final RelativeLayout main = (RelativeLayout) findViewById(R.id.linear_main);
-
-        main.setOnTouchListener(new View.OnTouchListener() {
-
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        final float x = event.getX();
-                        final float y = event.getY();
-                        //FrameLayout flView = (FrameLayout) v;
-                        //Ball Node = new Ball(getBaseContext(),x,y,25,number);
-
-                        RelativeLayout rl = new RelativeLayout(getBaseContext());
-
-
-                        int left = Math.round(x);
-                        int top = Math.round(y);
-
-                        rl.removeAllViews();
-
-
-                        rl.setPadding(left, top, 0, 0);
-
-                        btn_view = new Button(getBaseContext());
-                        btn_view.setId(number);
-                        btn_view.setText(String.valueOf(number));
-
-                        btn_view.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Button buton = (Button) findViewById(v.getId());
-
-                                buton.setBackgroundColor(Color.RED);
-                                if (numberOfNode == -5) {
-                                    numberOfNode = v.getId();
-                                    firsX = x;
-                                    firstY = y;
-                                } else {
-                                    //Toast.makeText(getBaseContext(), +numberOfNode + "ve " + v.getId() + "yiçiz", Toast.LENGTH_SHORT).show();
-
-                                    AlertDialog.Builder alert = writeRoadValue(x,y,main,buton.getId());
-                                    alert.show();
-
-
-                                }
-
-                            }
-                        });
-
-
-                        //main.addView(Node);
-                        rl.addView(btn_view);
-                        main.addView(rl);
-                        number++;
-                    case MotionEvent.ACTION_MOVE:
-                        // Do something that should only happen when the user is touching the screen
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        // Do something that should only happen when the user stops touching the screen
-                        break;
-                }
-
-
-                return true;
-
-            }
-
-
-        });
-
-
-    }
-
-
-    public AlertDialog.Builder writeRoadValue(final float x,final float y,final RelativeLayout main,final int startingnode)  {
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-
-
-        alert.setTitle("Cost of Road");
-        alert.setMessage("Write Cost");
-
-        //Set an EditText view to get user input
-        final EditText input = new EditText(this);
-        input.setHint("0");
-        alert.setView(input);
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                cost = input.getText().toString();
-                DrawView dv = new DrawView(MainActivity.this, firsX, firstY, x, y, cost);
-                main.addView(dv);
-                kruskalobject.setMatrix(startingnode, numberOfNode,cost);
-                //Toast.makeText(MainActivity.this, numberOfNode + " " + startingnode + " " + cost, Toast.LENGTH_SHORT).show();
-                numberOfNode = -5;
-
-
-            }
-        });
-
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                // Canceled.
-            }
-        });
-
-
-        return alert;
-
-
-    }
+//    public void createCircle() {
+//
+//        final RelativeLayout main = (RelativeLayout) findViewById(R.id.linear_main);
+//
+//        main.setOnTouchListener(new View.OnTouchListener() {
+//
+//
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                switch (event.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        final float x = event.getX();
+//                        final float y = event.getY();
+//                        //FrameLayout flView = (FrameLayout) v;
+//                        //Ball Node = new Ball(getBaseContext(),x,y,25,number);
+//
+//                        RelativeLayout rl = new RelativeLayout(getBaseContext());
+//
+//
+//                        int left = Math.round(x);
+//                        int top = Math.round(y);
+//
+//                        rl.removeAllViews();
+//
+//
+//                        rl.setPadding(left, top, 0, 0);
+//
+//                        btn_view = new Button(getBaseContext());
+//                        btn_view.setId(number);
+//                        btn_view.setText(String.valueOf(number));
+//
+//                        btn_view.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                Button buton = (Button) findViewById(v.getId());
+//
+//                                buton.setBackgroundColor(Color.RED);
+//                                if (numberOfNode == -5) {
+//                                    numberOfNode = v.getId();
+//                                    firsX = x;
+//                                    firstY = y;
+//                                } else {
+//                                    //Toast.makeText(getBaseContext(), +numberOfNode + "ve " + v.getId() + "yiçiz", Toast.LENGTH_SHORT).show();
+//
+//                                    AlertDialog.Builder alert = writeRoadValue(x,y,main,buton.getId());
+//                                    alert.show();
+//
+//
+//                                }
+//
+//                            }
+//                        });
+//
+//
+//                        //main.addView(Node);
+//                        rl.addView(btn_view);
+//                        main.addView(rl);
+//                        number++;
+//                    case MotionEvent.ACTION_MOVE:
+//                        // Do something that should only happen when the user is touching the screen
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        // Do something that should only happen when the user stops touching the screen
+//                        break;
+//                }
+//
+//
+//                return true;
+//
+//            }
+//
+//
+//        });
+//
+//
+//    }
+//
+//
+//    public AlertDialog.Builder writeRoadValue(final float x,final float y,final RelativeLayout main,final int startingnode)  {
+//
+//        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+//
+//
+//        alert.setTitle("Cost of Road");
+//        alert.setMessage("Write Cost");
+//
+//        //Set an EditText view to get user input
+//        final EditText input = new EditText(this);
+//        input.setHint("0");
+//        alert.setView(input);
+//
+//        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                cost = input.getText().toString();
+//                DrawView dv = new DrawView(MainActivity.this, firsX, firstY, x, y, cost);
+//                main.addView(dv);
+//                kruskalobject.setMatrix(startingnode, numberOfNode,cost);
+//                //Toast.makeText(MainActivity.this, numberOfNode + " " + startingnode + " " + cost, Toast.LENGTH_SHORT).show();
+//                numberOfNode = -5;
+//
+//
+//            }
+//        });
+//
+//        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int whichButton) {
+//                // Canceled.
+//            }
+//        });
+//
+//
+//        return alert;
+//
+//
+//    }
 
 }
 
